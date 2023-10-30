@@ -1,0 +1,68 @@
+Question:
+A company is developing a new social product to increase the company revenue. The architecture of the product is using mircro-service. You play as a python testing engineer who is in charge of setuping the testing system for upload service. The upload service is a part of micro-service system. The upload service is used for receving the photo from user end and save them to the database on the server. 
+
+To upload a photo to the server, it must have the following keys:
+1. Must have an unique secret access token
+2. Must have an authentication process
+3. Must have a photo
+4. Must have a upload response
+
+
+You are required to complete the following questions.
+1. Draw a workflow diagram of upload photo service
+please see uploadphotoflow diagram
+
+2. Design the high-level test scenarios (At least 5 scenarios)
+(1)get token successfully(correct params) or failed(incorrect params) and compare with database
+(2)call upload api with valid authentication info and required photo and compare with database about upload photo info
+(3)call upload api without authentication info
+(4)call upload api with expired authentication info
+(5)call upload api without photo
+
+
+3. Write the test case for those high-level test scenarios using pytest (At least 5 scenarios). 
+class uploadphoto:
+	def test_login(self):
+		response=requests.session().post(url='get_token url',data=payload)
+		assert response.code==200
+		assert response.content
+		
+	def test_upload(self):
+		response=requests.session().post(url='upload url',header=valid token,data=payload)
+		assert response.code==200
+		assert response.content
+		
+	def test_upload(self):
+		response=requests.session().post(url='upload url',header='',data=payload)
+		assert response.code==401
+		assert response.content	
+		
+	def test_upload(self):
+		response=requests.session().post(url='upload url',header=invalid token,data=payload)
+		assert response.code==401
+		assert response.content
+	
+	def test_upload(self):
+		response=requests.session().post(url='upload url',header=valid token,data=payload)
+		assert response.code==401
+		assert response.content
+	
+	
+
+
+4. (Optional) Wrap your test case code as an test automation job
+1.get latest code from repo 
+2.build code(if build required)
+3.run testcases with command
+4.send test result email and generate report file
+
+
+
+Notes:
+1. There is no limitation on your creation. You can make any assumptions whatever you think.
+
+
+
+
+ 
+ 

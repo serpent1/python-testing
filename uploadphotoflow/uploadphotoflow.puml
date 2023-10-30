@@ -1,0 +1,25 @@
+@startuml
+skinparam maxMessageSize 200
+skinparam backgroundColor wheat
+'https://plantuml.com/sequence-diagram
+skinparam roundcorner 20
+actor client 
+participant mircroservice 
+
+ 
+== client upload photo to sever with micro-service ==
+autonumber 
+client->mircroservice:call get token api to get token with username/password etc.
+activate client
+activate mircroservice
+mircroservice->client:return token detail info
+
+client->client:client parse response and get token field
+
+client->mircroservice:call upload api to upload photo
+mircroservice->client:return upload result info 
+
+
+autonumber 
+
+@enduml
