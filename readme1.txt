@@ -11,3 +11,5 @@ test remote
 
 
 git test 01
+
+git testlocal o2
